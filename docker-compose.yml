@@ -16,7 +16,7 @@ services:
       timeout: 3s
       retries: 3
       start_period: 30s
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ["CMD-SHELL", "/usr/local/bin/docker-healthcheck"]
     environment:
       # Run "composer require symfony/mercure-bundle" to install and configure the Mercure integration
       MERCURE_URL: ${CADDY_MERCURE_URL:-http://caddy/.well-known/mercure}
