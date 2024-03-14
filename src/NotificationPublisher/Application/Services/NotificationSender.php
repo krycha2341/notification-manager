@@ -20,6 +20,13 @@ readonly class NotificationSender
     ) {
     }
 
+    public function canSendNotification(NotificationVO $vo): bool
+    {
+        // todo e.g. throttling
+
+        return true;
+    }
+
     public function sendNotification(NotificationVO $vo): void
     {
         // todo more detailed exception handling

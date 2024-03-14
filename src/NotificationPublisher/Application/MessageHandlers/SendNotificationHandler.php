@@ -17,6 +17,10 @@ readonly class SendNotificationHandler
     #[NoReturn]
     public function __invoke(NotificationVO $notificationVO): void
     {
+        if (!$this->notificationSender->canSendNotification($notificationVO)) {
+            return;
+        }
+
         $this->notificationSender->sendNotification($notificationVO);
     }
 }

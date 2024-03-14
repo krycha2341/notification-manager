@@ -33,4 +33,3 @@ curl -k --location 'http://localhost/notifications/create' \
 docker compose exec php bin/console notifications:queue -vvv
 ```
 3. since messenger is set to work in sync mode, previous command will actually "sent" messages to the users
-
