@@ -14,5 +14,4 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
-
-docker/
+/docker/db/

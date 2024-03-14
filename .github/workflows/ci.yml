@@ -27,6 +27,7 @@ jobs:
             - name: Start services
               run: docker compose up --build -d
             - name: Wait for services
+              # can't reproduce it using act and since it's not in scope of the task, this workflow is disabled for now
               run: |
                   while status="$(docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" "$(docker compose ps -q php)")"; do
                     case $status in

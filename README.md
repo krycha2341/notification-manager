@@ -12,3 +12,25 @@ composer install
 docker compose build --no-cache
 docker compose up -d
 ```
+
+Flow is simple:
+1. create notification with its data and channels info
+```bash
+curl -k --location 'http://localhost/notifications/create' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "user_id": 1,
+    "title": "title",
+    "body": "body",
+    "emails": ["test@email.com"],
+    "sms": ["phone-number"],
+    "pushes": ["device_token"]
+}'
+```
+2. queue created notification to be sent (todo config crontab to run this every 5 min or so)
+```bash
+docker compose exec php bin/console notifications:queue -vvv
+```
+3. since messenger is set to work in sync mode, previous command will actually "sent" messages to the users
+

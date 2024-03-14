@@ -22,3 +22,29 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # choose which services to tag and pass as an argument to the providers registry
+    # sms
+    App\NotificationPublisher\Infrastructure\Services\SMS\Providers\:
+        resource: '../src/NotificationPublisher/Infrastructure/Services/SMS/Providers/'
+        tags: ['app.sms.providers']
+
+    App\NotificationPublisher\Infrastructure\Services\SMS\SMSProvidersRegistry:
+        arguments:
+            $smsProviders: !tagged_iterator app.sms.providers
+
+    # emails
+    App\NotificationPublisher\Infrastructure\Services\Email\Providers\:
+        resource: '../src/NotificationPublisher/Infrastructure/Services/Email/Providers/'
+        tags: ['app.email.providers']
+    App\NotificationPublisher\Infrastructure\Services\Email\EmailProvidersRegistry:
+        arguments:
+            $emailProviders: !tagged_iterator app.email.providers
+
+    # pushes
+    App\NotificationPublisher\Infrastructure\Services\Push\Providers\:
+        resource: '../src/NotificationPublisher/Infrastructure/Services/Push/Providers/'
+        tags: [ 'app.push.providers']
+    App\NotificationPublisher\Infrastructure\Services\Push\PushProvidersRegistry:
+        arguments:
+            $pushProviders: !tagged_iterator app.push.providers
