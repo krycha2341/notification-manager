@@ -6,11 +6,13 @@ PHP 8.2<br>
 Symfony 5.4<br>
 Postgres 16
 
-# Starter
+# Starter (this one can take some time...)
 ```bash
 composer install
 docker compose build --no-cache
 docker compose up -d
+docker compose exec php bin/console make:migration
+docker compose exec php bin/console doctrine:migrations:migrate
 ```
 
 Flow is simple:
