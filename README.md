@@ -11,6 +11,8 @@ Postgres 16
 composer install
 docker compose build --no-cache
 docker compose up -d
+docker compose exec php bin/console make:migration
+docker compose exec php bin/console doctrine:migrations:migrate
 ```
 
 Flow is simple:
