@@ -6,7 +6,7 @@ PHP 8.2<br>
 Symfony 5.4<br>
 Postgres 16
 
-# Starter
+# Starter (this one can take some time...)
 ```bash
 composer install
 docker compose build --no-cache
